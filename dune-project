@@ -2,9 +2,7 @@
 
 (name aocaml)
 
-(generate_opam_files true)
-
 (source
- (github username/reponame))
+ (github gtaharaedmonds/aocaml))
 
 (authors "Gus Tahara-Edmonds")

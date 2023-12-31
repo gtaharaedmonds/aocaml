@@ -1,6 +1,10 @@
 let is_digit chr = chr >= '0' && chr <= '9'
 let to_digit chr = int_of_char chr - int_of_char '0'
 
+let solve file fn =
+  In_channel.with_open_text file In_channel.input_lines
+  |> List.map fn |> List.fold_left ( + ) 0
+
 module Part1 = struct
   let decode line =
     (* find the digit char in str, starting at idx and stepping in the step directon *)
@@ -12,10 +16,6 @@ module Part1 = struct
     let first_digit = find_digit 0 1 line in
     let last_digit = find_digit (String.length line - 1) (-1) line in
     (10 * first_digit) + last_digit
-
-  let solve file =
-    In_channel.with_open_text file In_channel.input_lines
-    |> List.map decode |> List.fold_left ( + ) 0
 end
 
 module Part2 = struct
@@ -54,12 +54,8 @@ module Part2 = struct
     let first_digit = find_digit 0 1 line in
     let last_digit = find_digit (String.length line - 1) (-1) line in
     (10 * first_digit) + last_digit
-
-  let solve file =
-    In_channel.with_open_text file In_channel.input_lines
-    |> List.map decode |> List.fold_left ( + ) 0
 end
 
-let p1_soln = Part1.solve "data/day1.txt"
-let p2_soln = Part2.solve "data/day1.txt"
+let p1_soln = solve "data/day1.txt" Part1.decode
+let p2_soln = solve "data/day1.txt" Part2.decode
 let () = Printf.printf "Part 1: %d\nPart 2: %d\n" p1_soln p2_soln
