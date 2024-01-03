@@ -3,7 +3,8 @@ let to_digit chr = int_of_char chr - int_of_char '0'
 
 let solve file fn =
   In_channel.with_open_text file In_channel.input_lines
-  |> List.map fn |> List.fold_left ( + ) 0
+  |> List.map fn
+  |> List.fold_left ( + ) 0
 
 module Part1 = struct
   let decode line =

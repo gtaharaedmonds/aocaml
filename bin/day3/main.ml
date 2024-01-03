@@ -110,7 +110,8 @@ module Part2 = struct
           Array.init schematic.width ~f:(fun _ -> ZeroGear))
     in
     let update_ratios () =
-      !gears |> dedup_pair
+      !gears
+      |> dedup_pair
       |> List.iter ~f:(fun (x, y) ->
              ratios.(y).(x) <- add_gear ratios.(y).(x) !num);
       gears := [];

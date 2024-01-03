@@ -11,9 +11,11 @@ let parse_game line =
   in
   (* split each subset into lists of tuples of (number of cubes, color) *)
   let parsed =
-    record |> String.split_on_char ';'
+    record
+    |> String.split_on_char ';'
     |> List.map (fun subset ->
-           subset |> String.split_on_char ','
+           subset
+           |> String.split_on_char ','
            |> List.map (fun cube_showing ->
                   let split_showing =
                     String.split_on_char ' ' (String.trim cube_showing)
@@ -43,7 +45,8 @@ let parse_game line =
 
 let solve file fn =
   In_channel.with_open_text file In_channel.input_lines
-  |> List.map fn |> List.fold_left ( + ) 0
+  |> List.map fn
+  |> List.fold_left ( + ) 0
 
 module Part1 = struct
   let valid_game line =
